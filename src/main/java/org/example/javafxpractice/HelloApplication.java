@@ -3,12 +3,16 @@ package org.example.javafxpractice;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
 
-import java.awt.*;
 import java.io.IOException;
+import java.util.Objects;
 
 public class HelloApplication extends Application {
 
@@ -19,11 +23,27 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         //Stage stage = new Stage();
-        stage.show();
-        Group root = new Group();
-        Scene scene = new Scene(root, Color.GRAY);
-        stage.setTitle("Demo");
+        //Group is an obj for grouping objects together
+//        Group root = new Group();
+        Parent root = FXMLLoader.load(getClass().getResource("three_btns.fxml"));
+        Scene scene = new Scene(root,1600, 900, Color.DARKGRAY);
+        stage.setResizable(false);
+
+        //Application Icon and Title
+        Image icon = new Image("itsuseless.png");
+        stage.getIcons().add(icon);
+        stage.setTitle("Gallo Coraje Shirt");
+
+        //Text
+//        Text someText = new Text("Who is this guy?");
+//        someText.setX(60);
+//        someText.setY(60);
+//        someText.setFont(Font.font("Times New Roman", 60));
+//
+//        root.getChildren().add(someText);
+
         stage.setScene(scene);
+        stage.show();
     }
 }
 
