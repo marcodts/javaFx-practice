@@ -1,10 +1,12 @@
 package org.example.javafxpractice;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -25,9 +27,34 @@ public class HelloApplication extends Application {
         //Stage stage = new Stage();
         //Group is an obj for grouping objects together
 //        Group root = new Group();
-        Parent root = FXMLLoader.load(getClass().getResource("three_btns.fxml"));
-        Scene scene = new Scene(root,1600, 900, Color.DARKGRAY);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("movement.fxml"));
+        Parent root = loader.load();
+        MovementController controller = loader.getController();
+        Scene scene = new Scene(root);
         stage.setResizable(false);
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                switch(keyEvent.getCode()) {
+                    case W:
+                        controller.moveUpward();
+                        break;
+                    case A:
+                        controller.moveLeft();
+                        break;
+                    case S:
+                        controller.moveDownward();
+                        break;
+                    case D:
+                        controller.moveRight();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
 
         //Application Icon and Title
         Image icon = new Image("itsuseless.png");
